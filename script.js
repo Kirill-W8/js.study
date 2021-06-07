@@ -1,7 +1,10 @@
 "use strict";
 
-const numberOfFilms = prompt('Сколько фильмов вы посмотрели?', ''),
-      personalMovieDB = {
+let numberOfFilms;
+
+
+ 
+const personalMovieDB = {
         count: numberOfFilms,
         movies: {},
         actors: {},
@@ -10,18 +13,76 @@ const numberOfFilms = prompt('Сколько фильмов вы посмотр�
 
     };
 
- const lastFilm = prompt('Один из последних просмотренных фильмов', ''),
-       rateFilm = prompt('На сколько оцените этот фильм?');
+    writeYourGeneres();
+    start();
+    rememberMyFilms();
+    detectPersonalLvl();
+    showMyDB();
 
- personalMovieDB.movies[lastFilm] = rateFilm;
+    function start(){
+        numberOfFilms = prompt('Сколько фильмов вы посмотрели?', '');
+    
+        while (numberOfFilms == '' || numberOfFilms == null || isNaN(numberOfFilms)) {
+            numberOfFilms = prompt('Сколько фильмов вы посмотрели?', '');
+        }
+    }
 
- const lastFilm2 = prompt('Один из последних просмотренных фильмов', ''),
-       rateFilm2 = prompt('На сколько оцените этот фильм?');
+    function showMyDB(){
+        if(personalMovieDB.privat){
+            console.log(personalMovieDB);
+        }else{
+            console.log(personalMovieDB);
+        }
+    }
 
- personalMovieDB.movies[lastFilm2] = rateFilm2;
+    function writeYourGeneres(){
+        for(let i = 1; i < 4; i++){
+
+            let c = prompt(`Ваш любимый жанр под номером ${i}`,'');
+            
+            personalMovieDB.genres[i - 1] = c;
+            
+
+        }
+    }
+
+    function rememberMyFilms(){
+       let c,
+           a;
+        for(let i = 0;i < 2; i++){
+              c = prompt('какой это фильм?','');
+              a = prompt('какую оценку Вы ему дадите?','');
+              if(c == '' || c == null || c.length >= 50 ){
+       
+                  i--;
+              }
+              else if(a == '' || a == null || c.length >= 50 ){
+                  i--;
+              }
+              else{
+               personalMovieDB.movies[c] = a;
+              }
+       }
+    }
+
+    function detectPersonalLvl(){
+        if(numberOfFilms < 10){
+            alert('MALO');
+          }else if(numberOfFilms >= 10 && numberOfFilms < 30){
+           alert('NORM');
+          }else if(numberOfFilms >= 30){
+           alert('KRASAWCHIK');
+          }else{
+           alert('(');
+          }
+    }
+
+   
+
  
- console.log(personalMovieDB.movies);
- console.log(personalMovieDB.count);
-
+     
+ 
+ 
+  
  
     
